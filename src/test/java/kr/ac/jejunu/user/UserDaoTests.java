@@ -9,13 +9,15 @@ import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.core.Is.is;
 
 public class UserDaoTests {
-
     @Test
     public void get() throws SQLException, ClassNotFoundException {
         Long id = 1l;
         String name = "hulk";
         String password = "1234";
-        UserDao userDao = new JejuUserDao();
+
+        ConnectionMaker connectionMaker = new JejuConnectionMaker();
+        UserDao userDao = new UserDao(connectionMaker);
+
         User user = userDao.findById(id);
 
         assertThat(user.getId(), is(id));
@@ -31,12 +33,16 @@ public class UserDaoTests {
         User user = new User();
         user.setName(name);
         user.setPassword(password);
-        UserDao userDao = new JejuUserDao();
+        ConnectionMaker connectionMaker = new JejuConnectionMaker();
+
+        UserDao userDao = new UserDao(connectionMaker);
+
         userDao.insert(user);
 
         assertThat(user.getId(), greaterThan(1l));
 
         User insertedUser = userDao.findById(user.getId());
+
         assertThat(insertedUser.getId(),  is(user.getId()));
         assertThat(insertedUser.getName(), is(name));
         assertThat(insertedUser.getPassword(), is(password));
@@ -48,7 +54,9 @@ public class UserDaoTests {
         String name = "hulk";
         String password = "1111";
 
-        UserDao userDao = new HallaUserDao();
+        ConnectionMaker connectionMaker = new HallaConnectionMaker();
+        UserDao userDao = new UserDao(connectionMaker);
+
         User user = userDao.findById(id);
 
         assertThat(user.getId(), is(id));
@@ -64,14 +72,19 @@ public class UserDaoTests {
         User user = new User();
         user.setName(name);
         user.setPassword(password);
-        UserDao userDao = new HallaUserDao();
+
+        ConnectionMaker connectionMaker = new HallaConnectionMaker();
+        UserDao userDao = new UserDao(connectionMaker);
+
         userDao.insert(user);
 
         assertThat(user.getId(), greaterThan(1l));
 
         User insertedUser = userDao.findById(user.getId());
+
         assertThat(insertedUser.getId(),  is(user.getId()));
         assertThat(insertedUser.getName(), is(name));
         assertThat(insertedUser.getPassword(), is(password));
     }
+
 }

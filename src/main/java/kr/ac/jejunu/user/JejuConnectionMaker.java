@@ -1,7 +1,8 @@
 package kr.ac.jejunu.user;
 
 import java.sql.*;
-public class JejuUserDao extends UserDao {
+
+public class JejuConnectionMaker implements ConnectionMaker {
 
     @Override
     public Connection getConnection() throws ClassNotFoundException, SQLException {

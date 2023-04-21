@@ -2,7 +2,7 @@ package kr.ac.jejunu.user;
 
 import java.sql.*;
 
-public class HallaUserDao extends UserDao {
+public class HallaConnectionMaker implements ConnectionMaker {
 
     @Override
     public Connection getConnection() throws ClassNotFoundException, SQLException {
