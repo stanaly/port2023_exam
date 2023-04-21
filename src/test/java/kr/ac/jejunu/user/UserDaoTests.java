@@ -59,7 +59,7 @@ public class UserDaoTests {
     @Test
     public void update() throws SQLException {
         User user = insertedUser();
-        String updatedName = "저사실은현규아닙니다";
+        String updatedName = "저사실현규아니에요";
         String updatedPassword = "4321";
 
         user.setName(updatedName);
