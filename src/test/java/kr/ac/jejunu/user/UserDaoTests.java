@@ -24,7 +24,7 @@ public class UserDaoTests {
     }
 
     @Test
-    public void get() throws SQLException {
+    public void get() throws SQLException, ClassNotFoundException {
         Long id = 1l;
         String name = "hulk";
         String password = "1234";
@@ -37,7 +37,7 @@ public class UserDaoTests {
     }
 
     @Test
-    public void insert() throws SQLException {
+    public void insert() throws SQLException, ClassNotFoundException {
         String name = "신현규";
         String password = "1234";
 
@@ -55,9 +55,8 @@ public class UserDaoTests {
         assertThat(insertedUser.getName(), is(name));
         assertThat(insertedUser.getPassword(), is(password));
     }
-
     @Test
-    public void update() throws SQLException {
+    public void update() throws SQLException, ClassNotFoundException {
         User user = insertedUser();
         String updatedName = "저사실현규아니에요";
         String updatedPassword = "4321";
@@ -75,7 +74,7 @@ public class UserDaoTests {
     }
 
     @Test
-    public void delete() throws SQLException {
+    public void delete() throws SQLException, ClassNotFoundException {
         User user = insertedUser();
         userDao.delete(user.getId());
 
